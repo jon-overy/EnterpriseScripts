@@ -18,13 +18,16 @@ jobs:
       with:
         repository: tysongibby/MudBlazorTemplateApp # Specifies the public repository to checkout (owner/repo)
         ref: master # Specifies the branch or ref to checkout
+        
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     - run: dotnet build MudBlazorTemplateApp.sln
+    
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
 
