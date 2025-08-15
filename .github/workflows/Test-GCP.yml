@@ -55,6 +55,6 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest -f Dockerfile .
+        docker build -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest -f DockerDirectory/Dockerfile .
         docker push us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest
 
