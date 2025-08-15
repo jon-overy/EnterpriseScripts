@@ -39,7 +39,7 @@ jobs:
       with:
         name: MudBlazor-Artifact # A descriptive name for your artifact
         path: /home/runner/work/EnterpriseScripts/EnterpriseScripts
-        path: build/output/ # The path to the file or directory to upload
+        #path: build/output/ # The path to the file or directory to upload
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
