@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v4 # Use the latest stable version
       with:
         name: MudBlazor-Artifact # A descriptive name for your artifact
-        path: build/output/ # The path to the file or directory to upload
+        #path: build/output/ # The path to the file or directory to upload
