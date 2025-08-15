@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository # Name of the step
+      uses: actions/checkout@v4 # Uses the actions/checkout action, specifying version 4
+      with:
+        repository: tysongibby/MudBlazorTemplateApp # Specifies the public repository to checkout (owner/repo)
+        ref: master # Specifies the branch or ref to checkout
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
