@@ -31,8 +31,8 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       
-    - name: Download artifact
-      uses: actions/download-artifact@v4
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4 # Use the latest stable version
       with:
-        name: MudBlazor-Artifact # The name of the artifact to download
-        path: ./downloaded-artifacts # The directory to download the artifact into
+        name: MudBlazor-Artifact # A descriptive name for your artifact
+        path: build/output/ # The path to the file or directory to upload
