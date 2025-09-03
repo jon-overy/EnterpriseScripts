@@ -30,8 +30,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - run: dotnet build MudBlazorTemplateApp.sln
-    - run: dotnet publish -c Release -o ./publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj
-    # MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj
+    - run: dotnet publish path/to/YourProject.csproj -c Release -o ./publish
+    #OLD - run: dotnet publish -c Release -o ./publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj
     
     #- name: Restore dependencies
       #run: dotnet restore
@@ -59,6 +59,6 @@ jobs:
     - name: Build and push Docker image
       run: |
         gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest -f DockerDirectory/Dockerfile .
+        docker build -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest -f+ DockerDirectory/Dockerfile .
         docker push us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest
 
