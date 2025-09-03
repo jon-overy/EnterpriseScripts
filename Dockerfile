@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS build
 #COPY .. /src/
 
 WORKDIR /src
-COPYY .. /src/publish/
+COPY .. /src/publish/
 
 #Add run command: CMD, and we'd point it at the .dll
 #CMD YourProject.dll
