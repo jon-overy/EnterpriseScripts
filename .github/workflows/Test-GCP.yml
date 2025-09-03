@@ -29,7 +29,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - run: dotnet build MudBlazorTemplateApp.sln
-    - run: dotent publish MudBlazorTemplateApp.sln
+    - run: dotnet publish MudBlazorTemplateApp.sln
     
     #- name: Restore dependencies
       #run: dotnet restore
