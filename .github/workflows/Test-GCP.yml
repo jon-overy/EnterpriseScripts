@@ -30,7 +30,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - run: dotnet build MudBlazorTemplateApp.sln
-    - run: dotnet publish -c Release -r linux-x64 --self=-contained true -p:PublishSingleFile=ture -p:PublishTrimmed=true -o ./publish MudBlazorTemplateApp.sln
+    - run: dotnet publish -c Release -r linux-x64 --self=-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -o ./publish MudBlazorTemplateApp.sln
     
     #- name: Restore dependencies
       #run: dotnet restore
