@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS build
 #WORKDIR /src
 #COPY .. /src/ #this grabs build code, not publish
 
-WORKDIR /src
-COPY ./publish .
+WORKDIR /app
+COPY publish/ .
 
 #Add run command: CMD, and we'd point it at the .dll
 #CMD YourProject.dll
