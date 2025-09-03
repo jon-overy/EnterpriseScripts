@@ -56,6 +56,15 @@ jobs:
       with:
         project_id: prj-d-trn-base-20ar
 
+    - name: Sanity check paths
+      run: |
+        echo "PWD: $(pwd)"
+        echo "Workspace tree (depth 2):"
+        find . -maxdepth 2 -type d -print | sort
+        echo "List ./publish:"
+        ls -la ./publish || echo "publish/ NOT FOUND at repo root"
+
+
     - name: Build and push Docker image
       run: |
         gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
