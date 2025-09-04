@@ -23,7 +23,7 @@ COPY --from=build /app/release/ /app/
 # Debug: prove the runtime stage received files
 RUN ls -la /app
 
-ENTRYPOINT ["dotnet", "MudBlazor.dll"]
+ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
 EXPOSE 8080
 
