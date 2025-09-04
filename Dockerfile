@@ -15,3 +15,5 @@ COPY . .
 #CMD YourProject.dll
 
 EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
