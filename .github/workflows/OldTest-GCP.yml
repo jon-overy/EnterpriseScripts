@@ -4,9 +4,7 @@
 
 name: MudBlazor-CICD
 
-#on:
-#  push:
-#    branches: [ "main" ]
+
 
 jobs:
   build:
