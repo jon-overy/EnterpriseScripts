@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=build /app/release/ /app/
 
 # Debug: prove the runtime stage received files
-RUN ls -la /app/release 
+RUN ls -la /app
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
