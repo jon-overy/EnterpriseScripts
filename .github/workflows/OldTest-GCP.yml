@@ -1,0 +1,49 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+
+name: MudBlazor-CICD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout MudBlazorTemplateApp # Name of the step
+      uses: actions/checkout@v4 # Uses the actions/checkout action, specifying version 4
+      with:
+        repository: tysongibby/MudBlazorTemplateApp # Specifies the public repository to checkout (owner/repo)
+        ref: master # Specifies the branch or ref to checkout
+
+    - name: Checkout Default repository # Name of the step
+      uses: actions/checkout@v4
+      with:
+        path: DockerDirectory
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - run: dotnet publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj -c Release -o "${{ github.workspace }}/DockerDirectory/AppFiles" && ls -la "${{ github.workspace }}/DockerDirectory/AppFiles" && ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"/*.dll
+
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GcpKey }}
+
+    - name: Set up Cloud SDK and configure Docker
+      uses: google-github-actions/setup-gcloud@v2
+      with:
+        project_id: prj-d-trn-base-20ar
+
+    - name: Build and push Docker image
+      run: |
+        #gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
+        #docker build -f DockerDirectory/Dockerfile -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest DockerDirectory
+        #docker push us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest
