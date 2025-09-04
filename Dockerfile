@@ -10,8 +10,8 @@ WORKDIR /app
 RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
 
 #Publish code#
-WORKDIR "MudBlazorTemplate/MudBlazorTemplate"
-RUN dotnet publish "MyDotNetApp.csproj" MudBlazorTemplate.csproj -c Release #-o /app/build
+WORKDIR "/app/MudBlazorTemplate/MudBlazorTemplate"
+RUN dotnet publish MudBlazorTemplate.csproj -c Release #-o /app/build
 
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
