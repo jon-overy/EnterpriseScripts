@@ -16,10 +16,15 @@ RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
-WORKDIR /app/release
+WORKDIR /app
 
-COPY --from=build /app/release ./
-RUN ls -l /app
+COPY --from=build /app/release/ /app/
+
+# Debug: prove the runtime stage received files
+RUN echo "RUNTIME STAGE: /app contents:" \
+ && ls -la /app \
+ && echo "RUNTIME STAGE: any DLLs under /app?" \
+ && find /app -maxdepth 1 -type f -name "*.dll" -print
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
