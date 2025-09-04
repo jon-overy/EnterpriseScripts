@@ -13,11 +13,11 @@ RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
 WORKDIR "/app/MudBlazorTemplate/MudBlazorTemplate"
 RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 WORKDIR /app
 
-#COPY --from=build /app/release/ /app/
+COPY --from=build /app/release/ /app/
 #COPY /app/release/ /app/
 
 # Debug: prove the runtime stage received files
