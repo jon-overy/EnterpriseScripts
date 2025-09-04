@@ -18,7 +18,7 @@ RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 WORKDIR /app
 
 #COPY --from=build /app/release/ /app/
-COPY /app/release/ /app/
+#COPY /app/release/ /app/
 
 # Debug: prove the runtime stage received files
 RUN ls -la /app
