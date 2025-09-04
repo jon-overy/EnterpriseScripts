@@ -29,34 +29,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    #- run: dotnet build MudBlazorTemplateApp.sln
-    - run: dotnet publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj -c Release -o ./AppFiles
-    #OLD - run: dotnet publish -c Release -o ./AppFilesMudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj
-    
-    #- name: Restore dependencies
-      #run: dotnet restore
-      
-    #- name: Build
-      #run: dotnet build --no-restore
-      
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4 # Use the latest stable version
-      with:
-        name: MudBlazor-Artifact # A descriptive name for your artifact
-        path: /home/runner/work/EnterpriseScripts/EnterpriseScripts
-        #path: build/output/ # The path to the file or directory to upload
-
-    - name: Download build artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: MudBlazor-Artifact
-        path: ${{ github.workspace }}/DockerDirectory/AppFiles
-
-    - run: |
-        echo "workspace: ${{ github.workspace }}"
-        echo "Tree (depth 2):"; find . -maxdepth 2 -type d -print | sort
-        echo "AppFiles/ contents:"; ls -la AppFiles || true
-        echo "DockerDirectory/AppFiles contents:"; ls -la DockerDirectory/AppFiles || true
+    - run: dotnet publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj \
+            -c Release \
+            -o "${{ github.workspace }}/DockerDirectory/AppFiles"
+          ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"
+          ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"/*.dll
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
