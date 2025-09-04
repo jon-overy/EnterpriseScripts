@@ -13,7 +13,7 @@ RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
 WORKDIR "/app/MudBlazorTemplate/MudBlazorTemplate"
 RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 
-RUN echo "Files in /app:" && ls -l /app
+RUN echo "Files in /app/release:" && ls -l /app/release
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
 #COPY --from=publish /app/release .
