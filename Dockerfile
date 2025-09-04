@@ -2,6 +2,8 @@
 #Fetch code from repo
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
+RUN apt-get update && apt-get install -y git
+
 WORKDIR /app
 
 RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
