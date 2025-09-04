@@ -32,6 +32,6 @@ jobs:
     - name: Build and push Docker image
       run: |
         gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
-        docker build --no-cache -f DockerDirectory/Dockerfile -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest .
+        docker build --no-cache -f DockerDirector/Dockerfile -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest .
         docker push us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest
 
