@@ -21,10 +21,7 @@ WORKDIR /app
 COPY --from=build /app/release/ /app/
 
 # Debug: prove the runtime stage received files
-RUN echo "RUNTIME STAGE: /app contents:" \
- && ls -la /app \
- && echo "RUNTIME STAGE: any DLLs under /app?" \
- && find /app -maxdepth 1 -type f -name "*.dll" -print
+RUN ls -la /app/release 
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
