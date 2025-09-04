@@ -1,6 +1,6 @@
 #Install Dependencies#
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS publish
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS publish
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 RUN apt-get update && apt-get install -y git
 
@@ -16,7 +16,7 @@ RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 RUN echo "Files in /app/release:" && ls -l /app/release
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
-COPY --from=publish /app/release ./
+COPY --from=build /app/release ./
 
 WORKDIR /app/release
 
