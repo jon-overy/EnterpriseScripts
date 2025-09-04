@@ -29,11 +29,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - run: dotnet publish "MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj" \
-            -c Release \
-            -o "${{ github.workspace }}/DockerDirectory/AppFiles"
-          ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"
-          ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"/*.dll
+    - run: dotnet publish MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj -c Release -o "${{ github.workspace }}/DockerDirectory/AppFiles" && ls -la "${{ github.workspace }}/DockerDirectory/AppFiles" && ls -la "${{ github.workspace }}/DockerDirectory/AppFiles"/*.dll
+
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
