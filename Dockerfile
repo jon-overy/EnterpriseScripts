@@ -1,19 +1,15 @@
-#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS build
-#WORKDIR /src
-#COPY .. /src/ #this grabs build code, not publish
-
-#WORKDIR /app
-#COPY publish/ .
+#Fetch code from repo
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 WORKDIR /app
-#COPY .. /app/
-#COPY publish/ .
-COPY . .
 
-#Add run command: CMD, and we'd point it at the .dll
-#CMD YourProject.dll
+RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
+
+#Publish code
+WORKDIR "MudBlazorTemplate/MudBlazorTemplate"
+RUN dotnet publish "MyDotNetApp.csproj" MudBlazorTemplate.csproj -c Release
 
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
+
+
