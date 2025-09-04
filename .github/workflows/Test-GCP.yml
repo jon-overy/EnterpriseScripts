@@ -52,13 +52,14 @@ jobs:
         name: MudBlazor-Artifact
         path: ${{ github.workspace }}/DockerDirectory/publish 
 
-    - name: Stage publish into DockerDirectory
+    - name: Publish app into DockerDirectory/publish
       run: |
         set -euxo pipefail
-        rm -rf DockerDirectory/publish
-        mkdir -p DockerDirectory/publish
-        cp -R publish/. DockerDirectory/publish/
-        ls -la DockerDirectory/publish
+        dotnet publish DockerDirectory/MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj \
+          -c Release \
+          -o "${{ github.workspace }}/DockerDirectory/publish"
+        echo "Published DLLs:"
+        ls -la "${{ github.workspace }}/DockerDirectory/publish"/*.dll
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
@@ -73,6 +74,6 @@ jobs:
     - name: Build and push Docker image
       run: |
         gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest -f DockerDirectory/Dockerfile DockerDirectory
+        docker build -f DockerDirectory/Dockerfile -t us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest DockerDirectory
         docker push us-central1-docker.pkg.dev/prj-d-trn-base-20ar/mudblazor/mudblazor-image:latest
 
