@@ -50,13 +50,13 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: MudBlazor-Artifact
-        path: ${{ github.workspace }}/DockerDirectory/publish 
+        path: ${{ github.workspace }}/DockerDirectory/AppFiles
 
     - run: |
         echo "workspace: ${{ github.workspace }}"
         echo "Tree (depth 2):"; find . -maxdepth 2 -type d -print | sort
-        echo "publish/ contents:"; ls -la publish || true
-        echo "DockerDirectory/publish contents:"; ls -la DockerDirectory/publish || true
+        echo "AppFiles/ contents:"; ls -la AppFiles || true
+        echo "DockerDirectory/AppFiles contents:"; ls -la DockerDirectory/AppFiles || true
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
