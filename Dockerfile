@@ -17,7 +17,10 @@ RUN echo "Files in /app/release:" && ls -l /app/release
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
 #COPY --from=publish /app/release .
-ENTRYPOINT ["dotnet", "MudBlazor.dll"]
+
+WORKDIR /app/release
+
+ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
 EXPOSE 8080
 
