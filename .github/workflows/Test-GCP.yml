@@ -52,14 +52,11 @@ jobs:
         name: MudBlazor-Artifact
         path: ${{ github.workspace }}/DockerDirectory/publish 
 
-    - name: Publish app into DockerDirectory/publish
-      run: |
-        set -euxo pipefail
-        dotnet publish DockerDirectory/MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj \
-          -c Release \
-          -o "${{ github.workspace }}/DockerDirectory/publish"
-        echo "Published DLLs:"
-        ls -la "${{ github.workspace }}/DockerDirectory/publish"/*.dll
+    - run: |
+        echo "workspace: ${{ github.workspace }}"
+        echo "Tree (depth 2):"; find . -maxdepth 2 -type d -print | sort
+        echo "publish/ contents:"; ls -la publish || true
+        echo "DockerDirectory/publish contents:"; ls -la DockerDirectory/publish || true
 
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
