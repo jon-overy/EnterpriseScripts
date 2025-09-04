@@ -11,11 +11,11 @@ RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
 
 #Publish code#
 WORKDIR "/app/MudBlazorTemplate/MudBlazorTemplate"
-RUN dotnet publish MudBlazorTemplate.csproj -c Release #-o /app/build
+RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
-#COPY --from=publish /app/publish .
+#COPY --from=publish /app/release .
 ENTRYPOINT ["dotnet", "MudBlazor.dll"]
 
 EXPOSE 8080
