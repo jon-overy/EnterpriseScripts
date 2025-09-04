@@ -52,6 +52,14 @@ jobs:
         name: MudBlazor-Artifact
         path: ${{ github.workspace }}/DockerDirectory/publish 
 
+    - name: Stage publish into DockerDirectory
+      run: |
+        set -euxo pipefail
+        rm -rf DockerDirectory/publish
+        mkdir -p DockerDirectory/publish
+        cp -R publish/. DockerDirectory/publish/
+        ls -la DockerDirectory/publish
+
     - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v2
       with:
