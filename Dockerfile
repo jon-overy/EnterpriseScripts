@@ -15,11 +15,11 @@ RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-COPY --from=build /app/release ./
-
-RUN echo "Files in /app/release:" && ls -l /app/release
 
 WORKDIR /app/release
+
+COPY --from=build /app/release ./
+RUN ls -l /app
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
