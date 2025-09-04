@@ -23,7 +23,7 @@ WORKDIR /app
 # Debug: prove the runtime stage received files
 RUN ls -la /app
 
-ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
+#ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
 EXPOSE 8080
 
