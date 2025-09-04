@@ -16,6 +16,7 @@ RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
 RUN echo "Files in /app/release:" && ls -l /app/release
 
 #FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 COPY --from=build /app/release ./
 
 WORKDIR /app/release
