@@ -8,17 +8,17 @@ EXPOSE 8080
 EXPOSE 8081
 
 
+#Fetch code from repo#
+RUN apt-get update && apt-get install -y git
+WORKDIR /app
+RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
+
+
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-
-RUN apt-get update && apt-get install -y git
-
-#Fetch code from repo#
 WORKDIR /src
-
-RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
-
+COPY /app/ /src/
 COPY ["MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj", "MudBlazorTemplate/MudBlazorTemplate/"]
 COPY ["MudBlazorTemplate/MudBlazorTemplate.Client/MudBlazorTemplate.Client.csproj", "MudBlazorTemplate/MudBlazorTemplate.Client/"]
 RUN dotnet restore "./MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj"
@@ -35,5 +35,3 @@ RUN dotnet publish "./MudBlazorTemplate.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
-
