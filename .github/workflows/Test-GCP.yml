@@ -14,6 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout MudBlazorTemplateApp # Name of the step
+      uses: actions/checkout@v4
+      with:
+        repository: tysongibby/MudBlazorTemplateApp
+        ref: master
+        path: codebase
+    
     - name: Checkout Default repository # Name of the step
       uses: actions/checkout@v4
       with:
