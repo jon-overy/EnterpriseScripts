@@ -3,14 +3,18 @@
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
-WORKDIR /app
+#WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
 
 #Fetch code from repo#
 RUN apt-get update && apt-get install -y git
+
+WORKDIR /app
+
 RUN git clone --depth=1 ... https://github.com/tysongibby/MudBlazorTemplateApp .
+
 RUN ls -la /app
 
 # This stage is used to build the service project
