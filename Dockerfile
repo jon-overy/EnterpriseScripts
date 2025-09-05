@@ -28,3 +28,5 @@ RUN dotnet publish "./MudBlazorTemplate.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
