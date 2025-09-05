@@ -18,6 +18,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY --from=base /app/ /src/
+RUN ls -la /src
 COPY ["MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj", "MudBlazorTemplate/MudBlazorTemplate/"]
 COPY ["MudBlazorTemplate/MudBlazorTemplate.Client/MudBlazorTemplate.Client.csproj", "MudBlazorTemplate/MudBlazorTemplate.Client/"]
 RUN dotnet restore "./MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj"
