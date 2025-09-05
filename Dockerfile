@@ -25,6 +25,6 @@ RUN ls -la /app
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
 
-EXPOSE 8080
+EXPOSE 32769
 
 
