@@ -1,28 +1,6 @@
-#Install Dependencies#
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-RUN apt-get update && apt-get install -y git
-
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS codebase
 #Fetch code from repo#
-WORKDIR /app
-
+RUN apt-get update && apt-get install -y git
+WORKDIR /code
 RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
-
-#Publish code#
-WORKDIR "/app/MudBlazorTemplate/MudBlazorTemplate"
-RUN dotnet publish MudBlazorTemplate.csproj -c Release -o /app/release
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-
-WORKDIR /app
-
-COPY --from=build /app/release/ /app/
-#COPY /app/release/ /app/
-
-# Debug: prove the runtime stage received files
-RUN ls -la /app
-
-ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
-
-EXPOSE 32769
+RUN ls -la /code
