@@ -1,27 +1,23 @@
 # See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS codebase
+#Fetch code from repo#
+RUN apt-get update && apt-get install -y git
+WORKDIR /code
+RUN git clone https://github.com/tysongibby/MudBlazorTemplateApp .
+RUN ls -la /code
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
-#WORKDIR /app
+WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
-
-
-#Fetch code from repo#
-RUN apt-get update && apt-get install -y git
-
-WORKDIR /app
-
-RUN git clone --depth=1 ... https://github.com/tysongibby/MudBlazorTemplateApp .
-
-RUN ls -la /app
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY --from=base /app/ /src/
+COPY --from=codebase /code/ /src/
 RUN ls -la /src
 COPY ["MudBlazorTemplate/MudBlazorTemplate/MudBlazorTemplate.csproj", "MudBlazorTemplate/MudBlazorTemplate/"]
 COPY ["MudBlazorTemplate/MudBlazorTemplate.Client/MudBlazorTemplate.Client.csproj", "MudBlazorTemplate/MudBlazorTemplate.Client/"]
