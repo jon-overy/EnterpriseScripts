@@ -4,8 +4,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
 
 
 # This stage is used to build the service project
@@ -28,5 +26,8 @@ RUN dotnet publish "./MudBlazorTemplate.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT ["dotnet", "MudBlazorTemplate.dll"]
